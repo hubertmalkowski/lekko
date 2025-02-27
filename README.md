@@ -1,25 +1,24 @@
 # LEKKO Router
 
-LEKKO Router is a simple and lightweight router for Svelte applications. It allows you to define routes with associated components and manage navigation within your Svelte app.
-
-## Features
-
-- Define routes with paths and optional components.
-- Navigate between routes using `goto` and `replace` methods.
-- Access current route parameters and components.
+LEKKO Router is a simple and lightweight router for Svelte applications. 
 
 ## Installation
 
-To install LEKKO Router, you can use npm or yarn:
+Install LEKKO Router, with your favourite package manager:
 
 ```bash
-npm install lekkorouter
+npm install lekko
+```
+or
+
+```bash
+pnpm add lekko
 ```
 
 or
 
 ```bash
-yarn add lekkorouter
+bun install lekko
 ```
 
 ## Usage
@@ -31,6 +30,8 @@ Create a `routes.ts` file to define your application routes:
 ```typescript
 import Home from "./Home.svelte";
 import About from "./About.svelte";
+import UserPage from './UserPage.svelte';
+import 404Page from './404Page.svelte';
 import { Router } from 'lekkorouter';
 
 const router = new Router([
@@ -41,6 +42,14 @@ const router = new Router([
   {
     path: '/about',
     component: About
+  },
+  {
+    path: '/user/:id',
+    component: UserPage
+  },
+  {
+    path: '*', // Will match any route
+    component: 404Page
   }
 ] as const);
 ```
@@ -52,13 +61,23 @@ In your `App.svelte` file, import and use the router:
 ```svelte
 <script>
   import { router } from './routes.ts';
-  $effect(() => {}); // It won't work without any $state or $effect
+  $effect(() => {}); // You need to add at least one rune to you `app.svelte` for the router to update
 </script>
 
 <a href="/">Home</a>
 <a href="/about">Home</a>
 
 <router.page />
+```
+
+### Using route params
+
+```svelte
+<script>
+import {router} from './routes.ts'
+</script>
+
+<div>user id is {router.params["id"]}</div>
 ```
 
 ## API
