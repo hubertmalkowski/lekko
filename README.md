@@ -31,7 +31,7 @@ Create a `routes.ts` file to define your application routes:
 import Home from "./Home.svelte";
 import About from "./About.svelte";
 import UserPage from './UserPage.svelte';
-import 404Page from './404Page.svelte';
+import Page404 from './404Page.svelte';
 import { Router } from 'lekkorouter';
 
 const router = new Router([
@@ -49,7 +49,7 @@ const router = new Router([
   },
   {
     path: '*', // Will match any route
-    component: 404Page
+    component: Page404
   }
 ] as const);
 ```

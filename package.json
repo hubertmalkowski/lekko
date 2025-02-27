@@ -8,6 +8,10 @@
     "files": [
         "src/**"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hubertmalkowski/lekko"
+    },
     "types": "./src/index.d.ts",
     "scripts": {
         "dev": "vite",
