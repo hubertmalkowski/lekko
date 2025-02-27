@@ -9,13 +9,34 @@ export type Route<Path extends string = string> = {
 }
 
 /**
- * Extracts the union of path types from an object's routes array.
- */
-export type RoutePaths<T extends { routes: readonly Route[] }> =
-    T['routes'][number]['path']
-
-/**
- * A class that manages a collection of routes.
+ * LEKKO Router
+ *
+ * A simple router for Svelte applications.
+ *
+ * Usage
+ * ```ts
+ * // routes.ts
+ * import Home from "./Home.svelte";
+ * import About from "./About.svelte";
+ *
+ * const router = new Router([{
+ *    path: '/',
+ *    component: Home
+ * },
+ * {
+ *    path: '/about',
+ *    component: About
+ * }] as const)
+ *  ```
+ * ```svelte
+ * <!-- App.svelte -->
+ * <script>
+ *    import { router } from './routes.ts'
+ *    $effect(() => {}) // It won't work without any $state or $effect
+ * </script>
+ *
+ * <router.page />
+ * ```
  */
 export class Router<T extends readonly Route[]> {
     /**
@@ -23,6 +44,9 @@ export class Router<T extends readonly Route[]> {
      * @param routes The array of routes to initialize the router with.
      */
     constructor(routes: T)
+
+    goto(path: string): void
+    replace(path: string): void
 
     /**
      * Gets the array of routes.
