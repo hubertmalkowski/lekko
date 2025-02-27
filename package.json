@@ -1,11 +1,13 @@
 {
     "name": "lekko",
-    "private": true,
-    "version": "0.0.1",
+    "version": "0.0.3",
     "type": "module",
     "exports": {
-        ".": "./src/index.ts"
+        ".": "./src/index.js"
     },
+    "files": [
+        "src/**"
+    ],
     "types": "./src/index.d.ts",
     "scripts": {
         "dev": "vite",
