@@ -29,5 +29,14 @@ export class Router<T extends readonly Route[]> {
      */
     get routes(): T
 
+    /**
+     * State with the url params.
+     */
+    get params(): Record<string, string>
+
+    /**
+     * @component
+     * Current page component
+     */
     get page(): Component
 }
