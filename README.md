@@ -1,4 +1,4 @@
-# LEKKO Router ![NPM Version](https://img.shields.io/npm/v/lekko?style=plastic&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Flekko)
+# LEKKO Router [![NPM Version](https://img.shields.io/npm/v/lekko?style=plastic&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Flekko)](https://www.npmjs.com/package/lekko/access)
 
 LEKKO Router is a simple and lightweight router for Svelte applications. 
 
