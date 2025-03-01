@@ -32,6 +32,7 @@ export function pathToRegex(path) {
     }
 
     const segments = path.split('/').filter(Boolean)
+
     /**
      * @type {(string | number)[]}
      */
@@ -85,7 +86,7 @@ export function pathToRegex(path) {
 }
 
 /**
- * @param {import("./router.").Route[]} routes
+ * @param {import("./router.svelte").Route[]} routes
  * @returns {CompiledRoute[]}
  */
 export function routesToRegex(routes) {
