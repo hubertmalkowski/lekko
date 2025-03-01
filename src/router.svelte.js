@@ -71,7 +71,7 @@ export class Router {
         const component = await this._waitForComponent(route)
         route.component = component
 
-        historyMethod(window.history, {}, '', pathname)
+        historyMethod.call(window.history, {}, '', pathname)
         this._page = route
     }
 
