@@ -8,6 +8,7 @@
 /**
  * @typedef {CompiledRoute & {
  * params: { [key: string]: string };
+ * component: import("svelte").Component
  * }} ActiveRoute
  */
 

@@ -5,7 +5,7 @@ import { Component } from 'svelte'
  */
 export type Route<Path extends string = string> = {
     path: Path
-    component?: Component
+    component: Component | (() => Promise<{ default: Component }>)
 }
 
 /**
@@ -45,8 +45,8 @@ export class Router<T extends readonly Route[]> {
      */
     constructor(routes: T)
 
-    goto(path: string): void
-    replace(path: string): void
+    goto(path: string): Promise<void>
+    replace(path: string): Promise<void>
 
     /**
      * Gets the array of routes.
@@ -62,5 +62,5 @@ export class Router<T extends readonly Route[]> {
      * @component
      * Current page component
      */
-    get page(): Component
+    get page(): Component | undefined
 }
