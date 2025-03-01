@@ -27,6 +27,8 @@ export class Router {
     _routes
     _compiledRoutes
 
+    _initialized = false
+
     /**
      * Creates a new Router instance.
      * @param {T} routes - The array of routes to initialize the router with.
@@ -36,7 +38,10 @@ export class Router {
         this._compiledRoutes = routesToRegex(this._routes)
 
         this._setupEventListeners()
-        this.replace(new URL(window.location.href))
+        console.log('init')
+        this.replace(new URL(window.location.href)).then(() => {
+            this._initialized = true
+        })
     }
 
     /**
@@ -63,7 +68,7 @@ export class Router {
      */
     async navigate(url, historyMethod) {
         const pathname = this._getPathname(url)
-        if (pathname === window.location.pathname) return
+        if (pathname === window.location.pathname && this._initialized) return
 
         const route = this.matchRoute(pathname)
         if (!route) return
@@ -129,10 +134,12 @@ export class Router {
      * @param {import('./matcher').ActiveRoute} page
      */
     async _waitForComponent(page) {
+        console.log('loading component')
         if (
             typeof page.component == 'function' &&
             page.component.constructor.name === 'AsyncFunction'
         ) {
+            console.log('loading component')
             //@ts-expect-error - This is a dynamic import
             const module = await page.component()
             return module.default
